@@ -12,6 +12,10 @@ FileUploader is a web-based application designed for uploading, displaying, vali
 * **Submit:** Submit validated files to Azure Data Lake Storage.
 * **Explorer:** 5. Explorer: View, delete, and download files from Azure storage.
 
+## Application Preview 🖼️
+
+![FileUploader Application Screenshot - Upload Tab](./docs/images/screenshot_1.png)
+
 ## Technology Stack 💻
 
 * **Frontend:** Streamlit (for the user interface with tabs: Upload, Preview, Validate, Submit, Explorer)
@@ -35,6 +39,7 @@ FileUploader is a web-based application designed for uploading, displaying, vali
     git clone https://github.com/marko2212/file-uploader.git
     cd file-uploader
     ```
+
     *(You are now in the project root directory)*
 
 2. **Create a Virtual Environment:** (Choose **one** method)
@@ -58,7 +63,7 @@ FileUploader is a web-based application designed for uploading, displaying, vali
 
     ```bash
     # Activate the environment
-    .\.venv\Scripts\Activate # Windows: 
+    .venv\Scripts\Activate # Windows: 
     source .venv/bin/activate # macOS/Linux: 
     ```
 
