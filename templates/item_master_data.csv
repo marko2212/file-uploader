@@ -1,0 +1,4 @@
+﻿CompanyID,BusinessUnit,ItemID,ItemName,ProductCategory,ProductGroup,Product_Segment,Product_Size,Brand,SubBrand,PackagingType,Phase,VendorId,VendorName,BuyerGroup,ProductionLine,ConvNetWeight,ConvPallet,ItemUnit,ItemGroup,ItemIDGlobal,Preparation,Line_of_business,Degree_of_innovation
+au02,U16U,9997,UNBAKED Escargot 140g x 80,French pastry,Filled Swirls,new column,new column,Other own brands,Other own brands,B2B packed,ACTIVE,,,,,999.9,0.018518519,Carton,FG,,Thaw & Bake,Frozen,new column
+au02,U16U,9998,UNBAKED Escargot 140g x 75,French pastry,Filled Swirls,new column,new column,Other own brands,Other own brands,B2B packed,ACTIVE,,,,,999.9,0.020833333,Carton,FG,,Thaw & Bake,Frozen,new column
+au02,U16U,9999,Wrapped Brioche 30 gm,Fast food,Burger buns,new column,new column,Other own brands,Other own brands,B2B packed,ACTIVE,,,,,999.9,0.020833333,Carton,FG,,Thaw & Serve,Frozen,new column

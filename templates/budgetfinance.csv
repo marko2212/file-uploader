@@ -1,0 +1,4 @@
+CompanyID,OriginalMainAccountID,AX12MainAccountID,OriginalCostcenterID,Ax12CostCenterID,AX12BusinessUnitID,AX12ObjectiveID,Ax12ProductionLineID,AX12ProjectID,AX12SiteID,AX12SubAccountID,IntercompanyID,Date,Currency,AmountAccounting,AmountTransaction,AmountReporting,VoucherText,Version,BudgetVersion,Year,Company
+DK02,,104120,,,U11S,,,,,,,31.1.2023,DKK,"-7229640,62","-7229640,62",,1010,BUD,1,2020,A
+DK02,,121110,,,U11S,,,,,,,31.1.2023,DKK,"-124618312,7","-124618312,7",,1210,BUD,2,2021,B
+DK02,,122110,,,U11S,,,,,,,31.1.2023,DKK,"-2765178,77","-2765178,77",,1220,BUD,3,2022,C

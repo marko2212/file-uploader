@@ -1,0 +1,141 @@
+version: 2
+
+sources:
+  - name: uploaded_files
+    schema: main
+    tables:
+    - name: icp
+      description: Add description icp
+      tests:
+        - dbt_utils.unique_combination_of_columns:
+            name: Combination of following columns can not contain duplicates- Valid_from & Company & Item & Actuality & Production_site & Production_line & DIS_Assumption & Customer_sister_company
+            combination_of_columns:
+              - Valid_from
+              - Company
+              - Item
+              - Actuality
+              - Production_site
+              - Production_line
+              - DIS_Assumption
+              - Customer_sister_company
+                        
+      columns:  
+        - name: Company
+          data_type: string
+          description: "Describe the Company." 
+          tests:
+            - not_null:
+                name: "Company - Can not be empty" 
+            - no_leading_or_trailing_spaces:
+                name: Company - Can not contain leading or trailing spaces              
+            - accepted_values_case_insensitive:
+                name: "Company id value needs to be one of the following: 'au02', 'be02', 'de01', 'dk01', 'dk02', 'dk91', 'ee01', 'ee02', 'fi01', 'fi04', 'gb04', 'hu01', 'lt02', 'lv02', 'no01', 'pl91', 'ro01', 'ru01', 'se01', 'us01'"
+                values: ['au02', 'be02', 'de01', 'dk01', 'dk02', 'dk91', 'ee01', 'ee02', 'fi01', 'fi04', 'gb04', 'hu01', 'lt02', 'lv02', 'no01', 'pl91', 'ro01', 'ru01', 'se01', 'us01']
+        - name: Valid_from
+          data_type: string
+          description: "Describe the Valid_from." 
+          tests:
+            - not_null:
+                name: "Valid_from - Can not be empty" 
+            - dbt_utils.expression_is_true:
+                name: "Valid_from - need to be following format- YYYYMM"
+                expression: " ~ '^[0-9]{4}(0[1-9]|1[0-2])$'"
+        - name: Actuality
+          data_type: string
+          description: "Describe the Actuality." 
+          tests:
+            - not_null:
+                name: "Actuality - Can not be empty"    
+            - accepted_values_case_insensitive:
+                name: Actuality value needs to be either "Budget" or "Actual"
+                values: ['budget', 'actual']
+        - name: Item
+          data_type: string
+          description: "Describe the Item." 
+          tests:
+            - not_null: 
+                name: "Item - Can not be empty"             
+            - no_leading_or_trailing_spaces:
+                name: "Item - Can not contain leading or trailing spaces"
+        - name: pcs_per_box
+          data_type: string
+          description: Describe the pcs/box.
+        - name: weight_per_pc_kg
+          data_type: string
+          description: Describe the weight/pc(kg).
+        - name: Customer_sister_company
+          data_type: string
+          description: "Describe the Customer_sister_company." 
+        - name: Production_site
+          data_type: string
+          description: "Describe the Production_site." 
+        - name: Production_line
+          data_type: string
+          description: "Describe the Production_line." 
+        - name: Pieces_per_hour
+          data_type: string
+          description: "Describe the Pieces_per_hour."
+        - name: OEE_percentage
+          data_type: decimal(16,4)
+          description: "Describe the OEE_percentage." 
+          tests:
+            - dbt_utils.expression_is_true:
+                name: OEE_percentage needs to be between 1-100 or empty
+                expression: " <= 100"
+            - dbt_utils.expression_is_true:
+                name: OEE_percentage needs to be between 1-100 or empty
+                expression: " >= 0"       
+        - name: Waste_percentage
+          data_type: string
+          description: "Describe the Waste_percentage." 
+        - name: DIS_Assumption
+          data_type: decimal(16,4)
+          description: "Describe the Actuality."             
+          tests:
+            - not_null: 
+                name: "DIS_Assumption - Can not be empty"               
+            - dbt_utils.expression_is_true:
+                name: DIS_Assumption needs to be between 0-365
+                expression: " <= 365"
+            - dbt_utils.expression_is_true:
+                name: DIS_Assumption needs to be between 0-365
+                expression: " >= 0"   
+        - name: External_purchase_price
+          data_type: string
+          description: "Describe the External_purchase_price." 
+        - name: Raw_materials
+          data_type: string
+          description: "Describe the Raw_materials."  
+        - name: Packaging_materials
+          data_type: string
+          description: "Describe the Packaging_materials."           
+        - name: Utility_cost
+          data_type: string
+          description: "Describe the Utility_cost." 
+        - name: Labour_cost
+          data_type: string
+          description: "Describe the Labour_cost." 
+        - name: Machine_cost
+          data_type: string
+          description: "Describe the machine_cost (Cleaning, Repair and Maintanance, Building)"
+        - name: Capacity_cost
+          data_type: string
+          description: "Describe the Capacity_cost." 
+        - name: Support_cost
+          data_type: string
+          description: "Describe the Support_cost." 
+        - name: Intermediate_transport_cost
+          data_type: string
+          description: "Describe the Intermediate_transport_cost." 
+        - name: Warehouse_cost
+          data_type: string
+          description: "Describe the Warehouse." 
+        - name: Supply_chain_support_cost
+          data_type: string
+          description: "Describe the Supply_chain_support_cost." 
+        - name: Dir_manning_fte
+          data_type: string
+          description: "Describe the Dir_manning(#FTE)." 
+        - name: Dir_manning_lc_per_prod_h
+          data_type: string
+          description: "Describe the Dir_manning(LC/prod_h)." 

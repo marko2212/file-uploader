@@ -1,0 +1,84 @@
+version: 2
+
+sources:
+  - name: uploaded_files
+    schema: main
+    tables:
+    - name: budgetfinance
+      description: Add description budgetfinance
+      columns:  
+        - name: CompanyID 
+          data_type: string
+          description: "Describe the CompanyID." 
+          tests:
+            - not_null: 
+                name: "CompanyID can not be empty"       
+            
+        - name: OriginalMainAccountID
+          data_type: string
+          description: "Describe the OriginalMainAccountID." 
+        - name: AX12MainAccountID
+          data_type: string
+          description: "Describe the AX12MainAccountID." 
+          tests:
+            - no_less_than:
+                name: "AX12MainAccountID - Can not be less than 10"
+                lower_boundary: 10
+    
+        - name: OriginalCostcenterID
+          data_type: string
+          description: "Describe the OriginalCostcenterID." 
+        - name: Ax12CostCenterID
+          data_type: string
+          description: "Describe the Ax12CostCenterID." 
+        - name: AX12BusinessUnitID
+          data_type: string
+          description: "Describe the AX12BusinessUnitID." 
+        - name: AX12ObjectiveID
+          data_type: string
+          description: "Describe the AX12ObjectiveID." 
+        - name: Ax12ProductionLineID
+          data_type: string
+          description: "Describe the Ax12ProductionLineID." 
+        - name: AX12ProjectID
+          data_type: string
+          description: "Describe the AX12ProjectID." 
+        - name: AX12SiteID
+          data_type: string
+          description: "Describe the AX12SiteID." 
+        - name: AX12SubAccountID
+          data_type: string
+          description: "Describe the AX12SubAccountID." 
+        - name: IntercompanyID
+          data_type: string
+          description: "Describe the IntercompanyID." 
+        - name: Date
+          data_type: string
+          description: "Describe the Date." 
+        - name: Currency
+          data_type: string
+          description: "Describe the Currency." 
+        - name: AmountAccounting
+          data_type: string
+          description: "Describe the AmountAccounting." 
+        - name: AmountTransaction
+          data_type: string
+          description: "Describe the AmountTransaction." 
+        - name: AmountReporting
+          data_type: string
+          description: "Describe the AmountReporting." 
+        - name: VoucherText
+          data_type: string
+          description: "Describe the VoucherText." 
+        - name: Version
+          data_type: string
+          description: "Describe the Version." 
+        - name: BudgetVersion
+          data_type: string
+          description: "Describe the BudgetVersion." 
+        - name: Year
+          data_type: string
+          description: "Describe the Year." 
+        - name: Company
+          data_type: string
+          description: "Describe the Company." 

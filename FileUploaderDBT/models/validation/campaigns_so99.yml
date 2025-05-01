@@ -1,0 +1,57 @@
+version: 2
+
+sources:
+  - name: uploaded_files
+    schema: main
+    tables:
+    - name: campaigns_so99
+      description: Campaign input for so99 integration
+      tests:
+        - dbt_utils.expression_is_true:
+            name: end_date should be bigger than start_date
+            expression: "end_date > start_date"        
+      columns:  
+        - name: Status
+          description: "The status of the sales record"
+          data_type: string
+        - name: Sales_area
+          description: "The sales area code"
+          data_type: int32
+        - name: SKU
+          description: "The stock keeping unit identifier"
+          data_type: string
+          tests: 
+            - not_null: 
+                name: "Sku can not be empty"            
+        - name: Start_date
+          description: "The start date of the sales period"
+          data_type: date
+          tests: 
+            - not_null: 
+                name: "start_date can not be empty"      
+        - name: End_date
+          description: "The end date of the sales period"
+          data_type: date
+          tests: 
+            - not_null: 
+                name: "end_date can not be empty"   
+        - name: Volume
+          description: "The volume of sales"
+          data_type: decimal(16,4)
+          tests: 
+            - dbt_utils.expression_is_true:
+                name: Volume needs to be positive number. 
+                expression: " >= 0"                
+            - not_null: 
+                name: "Volume can not be empty"                    
+        - name: Company_ID
+          description: "The identifier for the company"
+          data_type: string
+          tests:
+            - not_null:
+                name: "company_id - Can not be empty" 
+            - no_leading_or_trailing_spaces:
+                name: "company_id - Can not contain leading or trailing spaces"              
+            - accepted_values_case_insensitive:
+                name: "company_id value needs to be one of the following: 'au02', 'be02', 'de01', 'dk01', 'dk02', 'dk91', 'ee01', 'ee02', 'fi01', 'fi04', 'gb04', 'hu01', 'lt02', 'lv02', 'no01', 'pl91', 'ro01', 'ru01', 'se01', 'us01'"
+                values: ['au02', 'be02', 'de01', 'dk01', 'dk02', 'dk91', 'ee01', 'ee02', 'fi01', 'fi04', 'gb04', 'hu01', 'lt02', 'lv02', 'no01', 'pl91', 'ro01', 'ru01', 'se01', 'us01']   

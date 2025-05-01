@@ -1,0 +1,4 @@
+﻿Company_id,Item_id,Supply_Chain_Route,Customer_id,Customer_chain,Currency,Unit,Handling,Storage,Intermediate_Transport,Support,Distribution,Direct_Delivery,Valid_From,Valid_To,Actuality
+dk02,10825,,,,DKK,Pallet,-56.73,-72.24,-1.1,-31.47,-1.1,No,1.1.2024,31.12.2024,Budget
+dk02,1201075,,,,DKK,Pallet,-56.73,-72.24,0,-31.47,-1.1,No,1.1.2024,31.12.2024,Budget
+dk02,1201076,,,,DKK,Pallet,-56.73,-72.24,,-31.47,-1.1,No,1.1.2024,31.12.2024,Budget

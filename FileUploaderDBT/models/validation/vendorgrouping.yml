@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+  - name: uploaded_files
+    schema: main
+    tables:
+    - name: vendorgrouping
+      description: Information about vendors and their groupings by company.
+      columns:
+        - name: company_id
+          data_type: string
+          description: "Unique identifier for companies."
+          tests:
+            - not_null:
+                name: Company_ID - not null
+        - name: vendor_id
+          data_type: string
+          description: "Unique identifier for vendors."
+        - name: vendor_grouping
+          data_type: string
+          description: "Name of the vendor grouping."

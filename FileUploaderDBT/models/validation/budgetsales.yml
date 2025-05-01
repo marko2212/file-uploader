@@ -1,0 +1,150 @@
+version: 2
+
+sources:
+  - name: uploaded_files
+    schema: main
+    tables:
+    - name: budgetsales
+      description: Add description budgetsales
+      columns:  
+        - name: Version
+          data_type: string
+          description: "Describe the Version." 
+          tests:
+            - not_null: 
+                name: "Version can not be empty"       
+        - name: Company
+          data_type: string
+          description: "Describe the Company." 
+        - name: BusinessUnit
+          data_type: string
+          description: "Describe the BusinessUnit." 
+        - name: Item
+          data_type: string
+          description: "Describe the Item." 
+        - name: Customer
+          data_type: string
+          description: "Describe the Customer." 
+        - name: YearMonth
+          data_type: string
+          description: "Describe the YearMonth." 
+        - name: Currency
+          data_type: string
+          description: "Describe the Currency." 
+        - name: GrossTurnover
+          data_type: string
+          description: "Describe the GrossTurnover." 
+        - name: FixedDiscount
+          data_type: string
+          description: "Describe the FixedDiscount." 
+        - name: SpecialDiscount
+          data_type: string
+          description: "Describe the SpecialDiscount." 
+        - name: CampaignDiscount
+          data_type: string
+          description: "Describe the CampaignDiscount." 
+        - name: StockDiscount
+          data_type: string
+          description: "Describe the StockDiscount." 
+        - name: CollectionReward
+          data_type: string
+          description: "Describe the CollectionReward." 
+        - name: PalletDiscount
+          data_type: string
+          description: "Describe the PalletDiscount." 
+        - name: FullLoadDiscount
+          data_type: string
+          description: "Describe the FullLoadDiscount." 
+        - name: LogisticBonus
+          data_type: string
+          description: "Describe the LogisticBonus." 
+        - name: Bonus
+          data_type: string
+          description: "Describe the Bonus." 
+        - name: BonusIndirectCustomers
+          data_type: string
+          description: "Describe the BonusIndirectCustomers." 
+        - name: BonusTenderBased
+          data_type: string
+          description: "Describe the BonusTenderBased." 
+        - name: BonusActivityBased
+          data_type: string
+          description: "Describe the BonusActivityBased." 
+        - name: CampaignIndirect
+          data_type: string
+          description: "Describe the CampaignIndirect." 
+        - name: COGS
+          data_type: string
+          description: "Describe the COGS." 
+        - name: Distribution
+          data_type: string
+          description: "Describe the Distribution." 
+        - name: LuxTaxRefund
+          data_type: string
+          description: "Describe the LuxTaxRefund." 
+        - name: Quantity
+          data_type: string
+          description: "Describe the TotalDiscount." 
+        - name: TotalDiscount
+          data_type: string
+          description: "Describe the TotalDiscount." 
+        - name: EXTIntermediateCost
+          data_type: string
+          description: "Describe the EXTIntermediateCost." 
+        - name: EXTDistributionCost
+          data_type: string
+          description: "Describe the EXTDistributionCost." 
+        - name: EXTReturnCost
+          data_type: string
+          description: "Describe the EXTReturnCost." 
+        - name: INTIntermediateCost
+          data_type: string
+          description: "Describe the INTIntermediateCost." 
+        - name: INTDistributionStopCost
+          data_type: string
+          description: "Describe the INTDistributionStopCost." 
+        - name: INTDistributionDistanceCost
+          data_type: string
+          description: "Describe the INTDistributionDistanceCost." 
+        - name: INTDReturnCost
+          data_type: string
+          description: "Describe the INTDReturnCost." 
+        - name: TotalTD
+          data_type: string
+          description: "Describe the TotalT&D." 
+        - name: WHINTHandling
+          data_type: string
+          description: "Describe the WHINTHandling." 
+        - name: WHINTStorage
+          data_type: string
+          description: "Describe the WHINTStorage." 
+        - name: WHINTPickingOrder
+          data_type: string
+          description: "Describe the WHINTPickingOrder." 
+        - name: WHINTPickingOrderLine
+          data_type: string
+          description: "Describe the WHINTPickingOrderLine." 
+        - name: WHINTPickingCrates
+          data_type: string
+          description: "Describe the WHINTPickingCrates." 
+        - name: WHINTPickingFullCrates
+          data_type: string
+          description: "Describe the WHINTPickingFullCrates." 
+        - name: EXTWHHandling
+          data_type: string
+          description: "Describe the EXTWHHandling." 
+        - name: EXTWHStorage
+          data_type: string
+          description: "Describe the EXTWHStorage." 
+        - name: EXTWHPicking
+          data_type: string
+          description: "Describe the EXTWHPicking." 
+        - name: TotalWarehouse
+          data_type: string
+          description: "Describe the TotalWarehouse." 
+        - name: SupportCosts
+          data_type: string
+          description: "Describe the SupportCosts." 
+        - name: UOM
+          data_type: string
+          description: "Describe the UOM." 

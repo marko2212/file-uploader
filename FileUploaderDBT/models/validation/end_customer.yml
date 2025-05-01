@@ -1,0 +1,44 @@
+version: 2
+
+sources:
+  - name: uploaded_files
+    schema: main
+    tables:
+    - name: end_customer
+      description: End customer mapping
+      tests:
+        - dbt_utils.unique_combination_of_columns:
+            name: Combination of following columns can not contain duplicates- CompanyID & CustomerID & ItemID
+            combination_of_columns:
+              - CompanyID
+              - CustomerID
+              - ItemID
+
+      columns:
+        - name: CompanyID
+          data_type: string
+          description: "Identifier for companies."
+          tests:
+            - not_null:
+                name: CompanyID - not null
+        - name: CustomerID
+          data_type: string
+          description: "Identifier for customers."
+          tests:
+            - not_null:
+                name: CustomerID - not null
+        - name: ItemID
+          data_type: string
+          description: "Unique identifier for item."
+          tests:
+            - not_null:
+                name: ItemID - not null
+        - name: IKA
+          data_type: string
+          description: "International Key Account"
+        - name: End_customer
+          data_type: string
+          description: "End customer mapped manually by the units"
+        - name: region
+          data_type: string
+          description: "Describe the region"

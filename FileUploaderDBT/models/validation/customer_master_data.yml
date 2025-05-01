@@ -1,0 +1,117 @@
+version: 2
+
+sources:
+  - name: uploaded_files
+    schema: main
+    tables:
+    - name: customer_master_data
+      description: Customer Masterdata
+      tests:
+        - dbt_utils.unique_combination_of_columns:
+            name: Combination of following columns can not contain duplicates- CustomerCompanyKey & CustomerCode
+            combination_of_columns:
+              - CustomerCompanyKey
+              - CustomerCode
+      columns:  
+        - name: CustomerPartitionKey
+          data_type: string
+          description: "Describe the CustomerPartitionKey." 
+        - name: CustomerLabel
+          data_type: string
+          description: "Describe the CustomerLabel." 
+        - name: CustomerPriceGroup
+          data_type: string
+          description: "Describe the CustomerPriceGroup." 
+        - name: CustomerSO99SalesAreaName
+          data_type: string
+          description: "Describe the CustomerSO99SalesAreaName." 
+        - name: CustomerModifiedDate
+          data_type: string
+          description: "Describe the CustomerModifiedDate." 
+        - name: CustomerInvoiceAccountCode
+          data_type: string
+          description: "Describe the CustomerInvoiceAccountCode." 
+        - name: CustomerDKFreshChainGrouping
+          data_type: string
+          description: "Describe the CustomerDKFreshChainGrouping." 
+        - name: CustomerCode
+          data_type: string
+          description: "Describe the CustomerCode." 
+          tests:
+            - not_null:
+                name: "CustomerCode - Can not be empty"
+            - no_leading_or_trailing_spaces:
+                name: "CustomerCode - Can not contain leading or trailing spaces"
+
+        - name: CustomerGroupName
+          data_type: string
+          description: "Describe the CustomerGroupName." 
+        - name: CustomerChannelCode
+          data_type: string
+          description: "Describe the CustomerChannelCode." 
+        - name: CustomerSubChannelName
+          data_type: string
+          description: "Describe the CustomerSubChannelName." 
+        - name: CustomerCreatedDate
+          data_type: string
+          description: "Describe the CustomerCreatedDate." 
+        - name: CustomerABC
+          data_type: string
+          description: "Describe the CustomerABC." 
+        - name: CustomerLocalGroupName
+          data_type: string
+          description: "Describe the CustomerLocalGroupName." 
+        - name: CustomerSO99SalesAreaCode
+          data_type: string
+          description: "Describe the CustomerSO99SalesAreaCode." 
+        - name: CustomerCompanyKey
+          data_type: string
+          description: "Describe the CustomerCompanyKey." 
+          tests:
+            - not_null:
+                name: "CustomerCompanyKey - Can not be empty"
+            - no_leading_or_trailing_spaces:
+                name: "CustomerCompanyKey - Can not contain leading or trailing spaces"
+            - accepted_values_case_insensitive:
+                name: "CustomerCompanyKey value needs to be one of the following: 'au02', 'be02', 'de01', 'dk01', 'dk02', 'dk91', 'ee01', 'ee02', 'fi01', 'fi04', 'gb04', 'hu01', 'lt02', 'lv02', 'no01', 'pl91', 'ro01', 'ru01', 'se01', 'us01'"
+                values: ['au02', 'be02', 'de01', 'dk01', 'dk02', 'dk91', 'ee01', 'ee02', 'fi01', 'fi04', 'gb04', 'hu01', 'lt02', 'lv02', 'no01', 'pl91', 'ro01', 'ru01', 'se01', 'us01']
+
+        - name: CustomerStreet
+          data_type: string
+          description: "Describe the CustomerStreet." 
+        - name: CustomerCountryName
+          data_type: string
+          description: "Describe the CustomerCountryName." 
+        - name: CustomerLocalGroupCode
+          data_type: string
+          description: "Describe the CustomerLocalGroupCode." 
+        - name: CustomerCountryCode
+          data_type: string
+          description: "Describe the CustomerCountryCode." 
+        - name: CustomerKey
+          data_type: string
+          description: "Describe the CustomerKey." 
+        - name: CustomerInvoiceAccountName
+          data_type: string
+          description: "Describe the CustomerInvoiceAccountName." 
+        - name: CustomerName
+          data_type: string
+          description: "Describe the CustomerName." 
+        - name: CustomerAddress
+          data_type: string
+          description: "Describe the CustomerAddress." 
+        - name: CustomerChannelName
+          data_type: string
+          description: "Describe the CustomerChannelName." 
+        - name: CustomerCity
+          data_type: string
+          description: "Describe the CustomerCity." 
+        - name: CustomerDKFreshCorporateChain
+          data_type: string
+          description: "Describe the CustomerDKFreshCorporateChain." 
+        - name: CustomerGroupCode
+          data_type: string
+          description: "Describe the CustomerGroupCode." 
+        - name: CustomerZipCode
+          data_type: string
+          description: "Describe the CustomerZipCode." 

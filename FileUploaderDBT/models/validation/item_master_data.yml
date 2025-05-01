@@ -1,0 +1,93 @@
+version: 2
+
+sources:
+  - name: uploaded_files
+    schema: main
+    tables: 
+    - name: item_master_data
+      description: Local Item Masterdata
+      tests:
+        - dbt_utils.unique_combination_of_columns:
+            name: Unique combination of ItemID and CompanyId
+            combination_of_columns:
+              - CompanyID
+              - ItemID        
+      columns:
+        - name: CompanyID
+          data_type: string
+          description: "Unique identifier for the company."
+          tests:
+            - not_null:
+                name: "CompanyID - Can not be empty"            
+        - name: BusinessUnit
+          data_type: string
+          description: "Business unit within the company."
+        - name: ItemID
+          data_type: string
+          description: "Unique identifier for the item."
+          tests:
+            - not_null:
+                name: "ItemID - Can not be empty"               
+        - name: ItemName
+          data_type: string
+          description: "Name of the item."
+        - name: ProductCategory
+          data_type: string
+          description: "Category of the product."
+        - name: ProductGroup
+          data_type: string
+          description: "Group of the product."
+        - name: Product_Segment
+          data_type: string
+          description: "Descibe the Product Segment"
+        - name: Product_Size
+          data_type: string
+          description: "Describe the Product size"
+        - name: Brand
+          data_type: string
+          description: "Brand of the product."
+        - name: SubBrand
+          data_type: string
+          description: "Sub-brand of the product."
+        - name: PackagingType
+          data_type: string
+          description: "Type of packaging used for the product."
+        - name: Phase
+          data_type: string
+          description: "Phase of the product lifecycle."
+        - name: VendorId
+          data_type: string
+          description: "Unique identifier for the vendor."
+        - name: VendorName
+          data_type: string
+          description: "Name of the vendor."
+        - name: BuyerGroup
+          data_type: string
+          description: "Group responsible for purchasing."
+        - name: ProductionLine
+          data_type: string
+          description: "Production line where the item is manufactured."
+        - name: ConvNetWeight
+          data_type: string
+          description: "Converted net weight of the item."
+        - name: ConvPallet
+          data_type: string
+          description: "Converted pallet information for the item."
+        - name: ItemUnit
+          data_type: string
+          description: "Unit of measure for the item."
+        - name: ItemGroup
+          data_type: string
+          description: "Group to which the item belongs."
+        - name: ItemIDGlobal
+          data_type: string
+          description: "Global identifier for the item."
+        - name: Preparation
+          data_type: string
+          description: "Preparation instructions or details for the item."
+        - name: Line_of_business
+          data_type: string
+          description: "Line of business to which the item is related."
+        - name: Degree_of_innovation
+          data_type: string
+          description: "Describe the Degree_of_innovation"  

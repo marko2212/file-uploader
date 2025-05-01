@@ -1,0 +1,5 @@
+﻿CustomerKey,CustomerPartitionKey,CustomerCompanyKey,CustomerCode,CustomerName,CustomerLabel,CustomerInvoiceAccountCode,CustomerInvoiceAccountName,CustomerChannelCode,CustomerChannelName,CustomerSubChannelName,CustomerGroupCode,CustomerGroupName,CustomerLocalGroupCode,CustomerLocalGroupName,CustomerSO99SalesAreaCode,CustomerSO99SalesAreaName,CustomerPriceGroup,CustomerAddress,CustomerStreet,CustomerZipCode,CustomerCity,CustomerCountryCode,CustomerCountryName,CustomerCreatedDate,CustomerModifiedDate,CustomerABC,CustomerDKFreshChainGrouping,CustomerDKFreshCorporateChain
+999999,,AU01,999999,customer name,9999_label,,,Internal,Internal,,,AU1,Internal,Internal,999,Lantmannen internal area name,,,,,,AU,,,,,,
+999999,,HU01,999999,customer name,9999_label,,,Internal,Internal,,,HU01,Internal,Internal,999,Lantmannen internal area name,,,,,,HU,,,,,,
+999999,,AU01,999999,customer name,9999_label,,,Internal,Internal,,,AU1,Internal,Internal,999,Lantmannen internal area name,,,,,,AU,,,,,,
+999999,,HU01,999999,customer name,9999_label,,,Internal,Internal,,,HU01,Internal,Internal,999,Lantmannen internal area name,,,,,,HU,,,,,,

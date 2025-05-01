@@ -1,0 +1,132 @@
+version: 2
+
+sources:
+  - name: uploaded_files
+    schema: main
+    tables:
+    - name: costallocationrates
+      description: Add description CostAllocationRates
+      tests:
+        - dbt_utils.expression_is_true:
+            name: Date order
+            expression: "Valid_To > Valid_From"
+
+        - dbt_utils.unique_combination_of_columns:
+            name: Duplicates Item_id & Customer_id & Customer_chain
+            combination_of_columns:
+              - Item_id
+              - Customer_id
+              - Customer_chain
+      columns:  
+        - name: Actuality
+          data_type: string
+          description: defines where it's used, budget or actuals
+          tests:
+            - not_null:
+                name: Actuality id - not null
+            - accepted_values:
+                name: Actuality value
+                values: ['Budget', 'Actual', 'FC1', 'FC2']
+        - name: Distribution
+          data_type: decimal(16,4)
+          description: Distribution cost
+          tests:
+            - dbt_utils.expression_is_true:
+                name: Distribution - Rate sign
+                expression: " <= 0"
+                config:
+                    where: "Distribution is not null"
+        - name: Valid_From
+          data_type: date
+          description: Valid from
+        - name: Intermediate_Transport
+          data_type: decimal(16,4)
+          description: Intermediate_Transport cost
+          tests:
+            - dbt_utils.expression_is_true:
+                name: Intermediate_Transport - Rate sign
+                expression: " <= 0"
+                config:
+                    where: "Intermediate_Transport is not null"
+
+        - name: Customer_id
+          data_type: string
+          description: Customer id
+          
+          tests:
+            - no_leading_or_trailing_spaces:
+                name: Customer id - Check for spaces
+
+        - name: Unit
+          data_type: string
+          description: Unit id
+          tests:
+            - not_null:
+                name: Unit - not null
+            - accepted_values:
+                name: Rates per pallet
+                values: ['Pallet']
+        - name: Valid_To
+          data_type: date
+          description: Valid until
+        - name: Customer_chain
+          data_type: string
+          description: "Describe the Customer_chain."
+
+          
+          tests:
+            - no_leading_or_trailing_spaces:
+                name: Customer_chain - Check for spaces
+
+        - name: Supply_Chain_Route
+          data_type: string
+          description: "Describe the Supply_Chain_Route."
+        - name: Company_id
+          data_type: string
+          description: "Describe the Company_id."
+          tests:
+            - not_null:
+                name: Company id - not null
+            - accepted_values:
+                name: Company id value
+                values: ['au02', 'be02', 'de01', 'dk01', 'dk02', 'dk91', 'ee01', 'ee02', 'fi01', 'fi04', 'gb04', 'hu01', 'lt02', 'lv02', 'no01', 'pl91', 'ro01', 'ru01', 'se01', 'us01']
+            - no_leading_or_trailing_spaces:
+                name: Company id - Check for spaces
+        
+        - name: Item_id
+          data_type: string
+          description: "Describe the Item_id."
+        - name: Support
+          data_type: decimal(16,4)
+          description: Support cost
+          tests:
+            - dbt_utils.expression_is_true:
+                name: Support - Rate sign
+                expression: " <= 0"
+                config:
+                    where: "Support is not null"
+        - name: Currency
+          data_type: string
+          description: "Describe the Currency."
+        - name: Handling
+          tests:
+            - dbt_utils.expression_is_true:
+                name: Handling - Rate sign
+                expression: " <= 0"
+                config:
+                    where: "Handling is not null"
+          data_type: decimal(16,4)
+          description: Handling cost
+        - name: Direct_Delivery
+          data_type: string
+          description: Is direct delivery
+        - name: Storage
+          data_type: decimal(16,4)
+          description: Storage cost
+          tests:
+            - dbt_utils.expression_is_true:
+                name: Storage - Rate sign
+                expression: " <= 0"
+                config:
+                    where: "Storage is not null"
+                    expression: " < 0"

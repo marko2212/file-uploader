@@ -1,0 +1,5 @@
+﻿Company,Valid_from,Actuality,Item,pcs_per_box,weight_per_pc_kg,Customer_sister_company,Production_site,Production_line,Pieces_per_hour,OEE_percentage,Waste_percentage,DIS_Assumption,External_purchase_price,Raw_materials,Packaging_materials,Utility_cost,Labour_cost,Machine_cost,Capacity_cost,Support_cost,Intermediate_transport_cost,Warehouse_cost,Supply_chain_support_cost,Dir_manning_fte,Dir_manning_lc_per_prod_h
+dk,1.2024,,10825,99,99,sister_company,-56.73,-72.24,99,99,0.99,99,99,,Budget,99,99,99,99,-31.47,99,-72.24,99,99,99
+dk02,202401,Budget,,99,99,sister_company,-56.73,-72.24,99,99,0.99,99,99,,Budget,99,99,99,99,-31.47,99,-72.24,99,99,99
+dk02,202401,errornous value,10825,99,99,sister_company,-56.73,-72.24,99,99,0.99,99,99,,Budget,99,99,99,99,-31.47,99,-72.24,99,99,99
+dk02,202401,Budget,1201075,99,99,sister_company,-56.73,-72.24,99,99,0.99,99,99,,Budget,99,99,99,99,-31.47,99,-72.24,99,99,99

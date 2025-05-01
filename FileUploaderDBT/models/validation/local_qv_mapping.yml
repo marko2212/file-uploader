@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+  - name: uploaded_files
+    schema: main
+    tables:
+    - name: local_qv_mapping
+      description: Local Qlikview mapping
+      tests:
+        - dbt_utils.unique_combination_of_columns:
+            name: Unique combination of qv_Codes and ax_Codes
+            combination_of_columns:
+              - qv_Codes
+              - ax_Codes
+      columns:  
+        - name: qv_Codes
+          data_type: string
+          description: "qv_Codes." 
+        - name: ax_Codes
+          data_type: string
+          description: "ax_Codes" 
