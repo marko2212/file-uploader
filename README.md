@@ -29,6 +29,7 @@ FileUploader is a web-based application designed for uploading, displaying, vali
 * **Python:** Version 3.8 or higher.
 * **dbt Core:** The command-line tool `dbt` needs to be runnable. It's typically installed as part of the Python packages (see Installation step 4).
 * **Azure Credentials:** Valid Azure service principal credentials (Tenant ID, Client ID, Client Secret) or other supported authentication methods with permissions to access the target Azure Data Lake Storage container. These are needed for the `.env` file.
+* **Azure Storage Account:** The **Soft delete for blobs** feature **must be disabled** on the storage account for the application's delete functionality to work as expected. 
 * **Python Packages:** Listed in `requirements.txt`.
 
 ## Installation ⚙️
