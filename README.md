@@ -148,3 +148,9 @@ FileUploader is a web-based application designed for uploading, displaying, vali
 ## Support 🤝
 
 If you encounter any problems or have questions regarding the FileUploader application, please contact the development team or open an issue in the repository.
+
+## Author 👨‍💻
+
+* Marko A
+
+---
