@@ -132,17 +132,10 @@ FileUploader is a web-based application designed for uploading, displaying, vali
 3. Ensure your `profiles.yml` is set up correctly.
 4. Navigate to the project's root directory in your terminal.
 5. Launch the Streamlit application:
-    * If using `uv` and your environment is *not* active (optional way):
 
-        ```bash
-        uv run streamlit run main_app.py
-        ```
-
-    * Standard way (with environment active):
-
-        ```bash
-        streamlit run main_app.py
-        ```
+    ```bash
+    streamlit run main_app.py
+    ```
 
 6. Streamlit will provide a local URL (usually `http://localhost:8501`). Open this URL in your web browser.
 
