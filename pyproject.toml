@@ -1,19 +1,43 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
 [project]
-name = "video-to-text" # Or any other desired name
-version = "0.1.0"
-description = "A simple app to convert video to text" # Optional
-# List all packages your project depends on here.
-# These were taken from your requirements.txt file.
-dependencies = [
-    "streamlit==1.40.0",
-    "python-dotenv==1.0.0",
-    "ffmpeg-python==0.2.0",
-    "pydub==0.25.1",
-    "openai==1.75.0",
-    "tqdm==4.67.1",
-    "jiter==0.9.0",
+name = "file-uploader"
+version = "1.13.0"
+description = "Streamlit app for validating and uploading CSV/XLSX reports to Azure Data Lake Gen2." # Optional
+readme = "README.md" # Specifies the README file as the long description
+authors = [
+  { name="Marko Avramović", email="marko2212@gmail.com" },
 ]
-requires-python = ">=3.8" # Specify the Python version you use/require
+license = { text="MIT" }
+requires-python = ">=3.9" # Specify the Python version you use/require
+
+keywords = [
+  "streamlit",
+  "azure",
+  "data-lake",
+  "dbt",
+  "duckdb",
+  "pyarrow",
+  "file-upload",
+]
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Developers",
+    "Development Status :: 4 - Beta"
+]
+
+[project.urls]
+Homepage = "https://github.com/marko2212/file-uploader"
+Repository = "https://github.com/marko2212/file-uploader"
+Issues = "https://github.com/marko2212/file-uploader/issues" # Optional issue tracker link
+
+# ==============================
+# Tool Configuration
+# ==============================
 
 # Your existing ruff configuration goes below this
 [tool.ruff]
