@@ -133,6 +133,7 @@ def main():
 
             except Exception as e:
                 st.error(f"An unexpected error occurred in upload_tab: {e}")
+                log_event(f"An unexpected error occurred in upload_tab: {e}")
 
         with preview_tab:
             try:
@@ -170,6 +171,7 @@ def main():
 
             except Exception as e:
                 st.error(f"An unexpected error occurred in validate_tab: {e}")
+                log_event(f"An unexpected error occurred in validate_tab: {e}")
 
         with validate_tab:
             try:
@@ -182,6 +184,7 @@ def main():
 
             except Exception as e:
                 st.error(f"An unexpected error occurred in validate_tab: {e}")
+                log_event(f"An unexpected error occurred in validate_tab: {e}")
 
         with submit_tab:
             try:
@@ -219,6 +222,7 @@ def main():
 
             except Exception as e:
                 st.error(f"An unexpected error occurred in submit_tab: {e}")
+                log_event(f"An unexpected error occurred in submit_tab: {e}")
 
         # Tab 5: Browse, Preview, Delete and Download Files
         with explore_tab:
@@ -270,6 +274,7 @@ def main():
                                 st.session_state.selected_file = None
                             except Exception as e:
                                 st.error(f"Error converting or downloading file: {e}")
+                                log_event(f"Error converting or downloading file: {e}")
 
                     # List files in the selected directory
                     file_list = list_files_in_directory(
@@ -309,9 +314,11 @@ def main():
                         st.write("No files found in this directory.")
             except Exception as e:
                 st.error(f"An unexpected error occurred in explore_tab: {e}")
+                log_event(f"An unexpected error occurred in explore_tab: {e}")
 
     except Exception as e:
         st.error(f"An unexpected error occurred in main: {e}")
+        log_event(f"An unexpected error occurred in main: {e}")
 
 
 if __name__ == "__main__":
