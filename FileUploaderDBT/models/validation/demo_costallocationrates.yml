@@ -4,7 +4,7 @@ sources:
   - name: uploaded_files
     schema: main
     tables:
-    - name: costallocationrates
+    - name: demo_costallocationrates
       description: Add description CostAllocationRates
       tests:
         - dbt_utils.expression_is_true:

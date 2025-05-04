@@ -1,0 +1,184 @@
+version: 2
+
+sources:
+  - name: uploaded_files # Generic source name for demo
+    schema: main # Adjust if necessary
+    tables:
+      - name: demo_hcp_contacts # Generic table name for demo
+        description: "Fictional table of Healthcare Professional contacts for demonstration."
+        tests:
+          - unique:
+              name: ContactGUID must be unique system-wide
+              column_name: ContactGUID
+          - dbt_utils.unique_combination_of_columns:
+              name: InstitutionID and FullName combination must be unique
+              combination_of_columns:
+                - InstitutionID
+                - FullName
+        columns:
+          - name: ContactGUID
+            data_type: string
+            description: "Fictional unique identifier for the contact."
+            tests:
+              - not_null:
+                  name: ContactGUID cannot be null
+              - unique: # Redundant with the test above, but illustrates a column-level test
+                  name: ContactGUID check (column level)
+
+          - name: Country
+            data_type: string
+            description: "Fictional country of the institution."
+            tests:
+              - not_null:
+                  name: Country cannot be null
+
+          - name: InstitutionID
+            data_type: string
+            description: "Fictional unique identifier for the institution."
+            tests:
+              - not_null:
+                  name: InstitutionID cannot be null
+
+          - name: InstitutionName
+            data_type: string
+            description: "Fictional name of the institution."
+            tests:
+              - not_null:
+                  name: InstitutionName cannot be null
+
+          - name: Address
+            data_type: string
+            description: "Fictional street address."
+
+          - name: City
+            data_type: string
+            description: "Fictional city name."
+            # Removed no_leading_or_trailing_spaces test
+
+          - name: RegionCode
+            data_type: string
+            description: "Fictional regional code."
+
+          - name: FirstName
+            data_type: string
+            description: "Contact's first name."
+            tests:
+              - not_null:
+                  name: FirstName cannot be null
+
+          - name: LastName
+            data_type: string
+            description: "Contact's last name."
+            tests:
+              - not_null:
+                  name: LastName cannot be null
+              # Removed no_leading_or_trailing_spaces test
+
+          - name: FullName
+            data_type: string
+            description: "Contact's full name."
+            tests:
+              - not_null:
+                  name: FullName cannot be null
+              # Removed no_leading_or_trailing_spaces test
+
+          - name: Role
+            data_type: string
+            description: "Fictional role within the institution."
+
+          - name: ContactEmail
+            data_type: string
+            description: "Contact's email address."
+            tests:
+              - dbt_utils.expression_is_true: # Example test for email format
+                  name: Email_format_check_basic_validation
+                  expression: "LIKE '%_@_%._%'" # Very basic check
+                  config:
+                    where: "ContactEmail is not null AND ContactEmail != ''"
+
+          - name: ContactPhone
+            data_type: string
+            description: "Contact's phone number."
+
+          - name: InfluenceTier_Cardio
+            data_type: string
+            description: "Fictional influence tier in Cardiology."
+            tests:
+              - accepted_values:
+                  name: InfluenceTier_Cardio must be valid or NA/empty
+                  values: ['International', 'National', 'Regional', 'NA', '']
+                  # NO quote: false needed as these are strings
+
+          - name: InfluenceTier_Neuro
+            data_type: string
+            description: "Fictional influence tier in Neurology."
+            tests:
+              - accepted_values:
+                  name: InfluenceTier_Neuro must be valid or NA/empty
+                  values: ['International', 'National', 'Regional', 'NA', '']
+
+          - name: InfluenceTier_Onco
+            data_type: string
+            description: "Fictional influence tier in Oncology."
+            tests:
+              - accepted_values:
+                  name: InfluenceTier_Onco must be valid or NA/empty
+                  values: ['International', 'National', 'Regional', 'NA', '']
+
+          - name: Consent_Email
+            data_type: string # Assuming 'TRUE'/'FALSE' strings
+            description: "Consent status for email communication."
+
+          - name: Consent_Events
+            data_type: string # Assuming 'TRUE'/'FALSE' strings
+            description: "Consent status for event invitations."
+
+          # ... (other columns without specific tests for demo) ...
+
+          - name: ProjectA_Involvement
+            data_type: string
+            description: "Involvement in fictional Project A."
+
+          - name: ProjectB_PI
+            data_type: string
+            description: "Principal Investigator for fictional Project B."
+
+          - name: ProjectC_IIS
+            data_type: string
+            description: "Investigator-Initiated Study lead for fictional Project C."
+
+          - name: GuidelineAuthor_Cardio
+            data_type: string
+            description: "Authored Cardiology guidelines (fictional)."
+
+          - name: GuidelineAuthor_Neuro
+            data_type: string
+            description: "Authored Neurology guidelines (fictional)."
+
+          - name: AccessInfluence_Cardio
+            data_type: string
+            description: "Market access influence in Cardiology (fictional)."
+
+          - name: AccessInfluence_Neuro
+            data_type: string
+            description: "Market access influence in Neurology (fictional)."
+
+          - name: ProfessionalTitle
+            data_type: string
+            description: "Professional title (e.g., Dr., Prof.)."
+
+          - name: IsConsultant
+            data_type: string # Assuming 'TRUE'/'FALSE' strings
+            description: "Indicates if the contact is a consultant."
+
+          - name: RecordStatus
+            data_type: string
+            description: "Status of the contact record (e.g., Active, Inactive)."
+            tests:
+              - accepted_values:
+                  name: RecordStatus must be valid
+                  values: ['Active', 'Inactive', 'Pending']
+
+          - name: PrimaryField
+            data_type: string
+            description: "Primary medical field."

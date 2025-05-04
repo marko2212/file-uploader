@@ -4,7 +4,7 @@ sources:
   - name: uploaded_files
     schema: main
     tables:
-    - name: vendorgrouping
+    - name: demo_vendorgrouping
       description: Information about vendors and their groupings by company.
       columns:
         - name: company_id
