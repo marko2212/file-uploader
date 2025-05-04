@@ -207,7 +207,7 @@ def get_yaml_definitions():
     for path in configuration_file_paths:
         try:
             # For each model definition
-            with open(path, "r") as file:
+            with open(path) as file:
                 content = yaml.safe_load(file)
 
                 # Get the first defined source

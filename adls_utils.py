@@ -1,11 +1,13 @@
-import streamlit as st
+import os
+import time
+from io import BytesIO
+
 import pandas as pd
 import pyarrow.parquet as pq
-import os
-from io import BytesIO
-import time
+import streamlit as st
 from azure.identity import ClientSecretCredential
 from azure.storage.filedatalake import DataLakeServiceClient
+
 
 def load_credentials():
     """
@@ -15,13 +17,14 @@ def load_credentials():
         dict: A dictionary containing the credentials.
     """
     return {
-        'tenant_id': os.getenv('AZURE_TENANT_ID'),
-        'client_id': os.getenv('AZURE_CLIENT_ID'),
-        'client_secret': os.getenv('AZURE_CLIENT_SECRET'),
-        'account_name': os.getenv('AZURE_STORAGE_ACCOUNT_NAME'),
-        'container_name': os.getenv('AZURE_STORAGE_CONTAINER_NAME'),
-        'base_path': os.getenv('AZURE_STORAGE_FILE_PATH'),
+        "tenant_id": os.getenv("AZURE_TENANT_ID"),
+        "client_id": os.getenv("AZURE_CLIENT_ID"),
+        "client_secret": os.getenv("AZURE_CLIENT_SECRET"),
+        "account_name": os.getenv("AZURE_STORAGE_ACCOUNT_NAME"),
+        "container_name": os.getenv("AZURE_STORAGE_CONTAINER_NAME"),
+        "base_path": os.getenv("AZURE_STORAGE_FILE_PATH"),
     }
+
 
 def initialize_storage_account(tenant_id, client_id, client_secret, account_name):
     """
@@ -40,12 +43,16 @@ def initialize_storage_account(tenant_id, client_id, client_secret, account_name
         # Create a credential object using client secret
         credential = ClientSecretCredential(tenant_id, client_id, client_secret)
         # Initialize the DataLakeServiceClient with the provided account URL and credentials
-        service_client = DataLakeServiceClient(account_url=f"https://{account_name}.dfs.core.windows.net", credential=credential)
+        service_client = DataLakeServiceClient(
+            account_url=f"https://{account_name}.dfs.core.windows.net",
+            credential=credential,
+        )
         return service_client
     except Exception as e:
         # Handle connection errors
         st.error(f"Failed to connect to ADLS: {e}")
         return None
+
 
 def list_files_in_directory(service_client, file_system_name, directory_name):
     """
@@ -69,6 +76,7 @@ def list_files_in_directory(service_client, file_system_name, directory_name):
         # Handle errors during file listing
         st.error(f"Failed to list files: {e}")
         return []
+
 
 def download_file(service_client, file_system_name, selected_file):
     """
@@ -95,6 +103,7 @@ def download_file(service_client, file_system_name, selected_file):
         st.error(f"Failed to download file: {e}")
         return None
 
+
 def preview_parquet(data):
     """
     Preview the first 50 rows of a Parquet file.
@@ -117,6 +126,7 @@ def preview_parquet(data):
         st.error(f"Failed to preview Parquet file: {e}")
         return None
 
+
 def convert_parquet_to_excel(parquet_data):
     """
     Convert Parquet file data to an Excel file.
@@ -135,19 +145,28 @@ def convert_parquet_to_excel(parquet_data):
         # Convert the table to a pandas DataFrame
         df = table.to_pandas()
         # Columns to drop from the DataFrame
-        columns_to_drop = ['deltalake_loadtime', 'deltalake_filename', 'original_filename']
+        columns_to_drop = [
+            "deltalake_loadtime",
+            "deltalake_filename",
+            "original_filename",
+        ]
         # Drop specified columns if they exist
-        df.drop(columns=[col for col in columns_to_drop if col in df.columns], axis=1, inplace=True)
+        df.drop(
+            columns=[col for col in columns_to_drop if col in df.columns],
+            axis=1,
+            inplace=True,
+        )
         # Create an Excel buffer
         excel_buffer = BytesIO()
         # Write the DataFrame to an Excel file
-        with pd.ExcelWriter(excel_buffer, engine='xlsxwriter') as writer:
-            df.to_excel(writer, index=False, sheet_name='Sheet1')
+        with pd.ExcelWriter(excel_buffer, engine="xlsxwriter") as writer:
+            df.to_excel(writer, index=False, sheet_name="Sheet1")
         return excel_buffer.getvalue()
     except Exception as e:
         # Handle errors during conversion
         st.error(f"Failed to convert Parquet to Excel: {e}")
         return None
+
 
 def delete_files(service_client, file_system_name, selected_files):
     """
@@ -172,8 +191,6 @@ def delete_files(service_client, file_system_name, selected_files):
         st.error(f"Failed to delete files: {e}")
 
 
-
-
 @st.dialog("Delete Confirmation")
 def confirm_delete(service_client, container_name, selected_files):
     """
@@ -185,25 +202,34 @@ def confirm_delete(service_client, container_name, selected_files):
         selected_files (list): A list of file paths to delete.
     """
     # Displays a message asking the user to confirm the deletion of the specified files.
-    st.write(f"Are you sure you want to delete the following files:\n\n{', '.join(selected_files)}?")
-    
+    st.write(
+        f"Are you sure you want to delete the following files:\n\n{', '.join(selected_files)}?"
+    )
+
     # If the user presses the "Yes, delete" button, call the function to delete files.
     if st.button("Yes, delete", key="confirm_yes"):
         delete_files(service_client, container_name, selected_files)
-        time.sleep(2)   # Short pause before refreshing the application.
-        st.rerun()      # Reruns the application to refresh the display.
+        time.sleep(2)  # Short pause before refreshing the application.
+        st.rerun()  # Reruns the application to refresh the display.
 
     # If the user presses the "No, cancel" button, display a cancellation message.
     if st.button("No, cancel", key="confirm_no"):
         st.error("Deletion canceled.")
-        time.sleep(2)   # Short pause before refreshing the application.
-        st.rerun()      # Reruns the application to refresh the display.
-
+        time.sleep(2)  # Short pause before refreshing the application.
+        st.rerun()  # Reruns the application to refresh the display.
 
 
 import streamlit as st
 
-def handle_buttons(service_client, container_name, selected_files, preview_button_clicked, delete_button_clicked, convert_button_clicked):
+
+def handle_buttons(
+    service_client,
+    container_name,
+    selected_files,
+    preview_button_clicked,
+    delete_button_clicked,
+    convert_button_clicked,
+):
     """
     Handle actions for the preview, delete, and convert buttons.
 
@@ -227,11 +253,13 @@ def handle_buttons(service_client, container_name, selected_files, preview_butto
         if preview_button_clicked:
             if len(selected_files) == 1:
                 try:
-                    file_data = download_file(service_client, container_name, selected_files[0])
+                    file_data = download_file(
+                        service_client, container_name, selected_files[0]
+                    )
                 except Exception as e:
                     st.error(f"Error downloading file: {e}")
                     return
-                
+
                 if file_data:
                     try:
                         preview_df = preview_parquet(file_data)
@@ -240,7 +268,10 @@ def handle_buttons(service_client, container_name, selected_files, preview_butto
                         return
 
                     if preview_df is not None:
-                        with st.expander(f"Preview file (the first 50 rows): \n\n{selected_files[0]}", expanded=True):
+                        with st.expander(
+                            f"Preview file (the first 50 rows): \n\n{selected_files[0]}",
+                            expanded=True,
+                        ):
                             st.data_editor(preview_df, disabled=True)
                     else:
                         st.error("Failed to preview the file.")
