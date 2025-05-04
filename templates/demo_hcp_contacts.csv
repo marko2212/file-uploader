@@ -1,0 +1,21 @@
+ContactGUID,Country,InstitutionID,InstitutionName,Address,City,RegionCode,FirstName,LastName,FullName,Role,ContactEmail,ContactPhone,InfluenceTier_Cardio,InfluenceTier_Neuro,InfluenceTier_Onco,Consent_Email,Consent_Events,ProjectA_Involvement,ProjectB_PI,ProjectC_IIS,GuidelineAuthor_Cardio,GuidelineAuthor_Neuro,AccessInfluence_Cardio,AccessInfluence_Neuro,ProfessionalTitle,IsConsultant,RecordStatus,PrimaryField
+GUID-001,Utopia,INST-101,Central Clinic,1 Main St,Metroville,METRO-01,Alice,Anderson,Alice Anderson,Cardiologist,a.anderson@central.ut,555-1111,National,Regional,NA,TRUE,TRUE,Beta Study,,,TRUE,FALSE,High,Medium,Dr.,FALSE,Active,Cardiology
+GUID-002,Erewhon,INST-102,General Hospital,10 Health Ave,Capital City,CAP-01,Bob,Baker,Bob Baker,Neurologist,b.baker@general.ew,555-2222,NA,International,NA,TRUE,FALSE,Gamma Study,TRUE,,,,TRUE,Low,Prof.,TRUE,Active,Neurology
+GUID-003,Atlantis,INST-103,Ocean View Medical,5 Shore Dr,Seaside,SEAS-01,Carla,Clark,Carla Clark,Oncologist,c.clark@oceanview.at,555-3333,NA,NA,National,FALSE,FALSE,,,,,,,Medium,Dr.,FALSE,Inactive,Oncology
+GUID-004,Utopia,INST-104,Metro Health Group,20 Park Ln,Metroville,METRO-02,David,Davis,David Davis,Cardiologist,d.davis@metrohg.ut,555-4444,Regional,NA,NA,TRUE,TRUE,,,,FALSE,,Medium,NA,Dr.,TRUE,Active,Cardiology
+GUID-005,Erewhon,INST-101,Central Clinic,1 Main St,Metroville,METRO-01,Edward,Evans,Edward Evans,Neurologist,e.evans@central.ew,555-5555,NA,National,NA,TRUE,TRUE,Delta Study,TRUE,TRUE,,,High,High,Dr.,FALSE,Active,Neurology
+GUID-001-DUP,Neverland,INST-999,Duplicate Center,Fake St,Nowhere,NOWH-01,Duplicate,Entry,Duplicate Entry,Test,dup@test.nl,555-0000,NA,NA,NA,TRUE,TRUE,,,,,,,,,,, 
+FAIL-001,Utopia,INST-101,Central Clinic,1 Main St,Metroville,METRO-01,Alice,Anderson,Alice Anderson Alt,Oncologist,a.anderson.alt@central.ut,555-1112,NA,NA,Regional,TRUE,FALSE,,,,,,,,Dr.,FALSE,Active,Oncology 
+GUID-MISSING,Erewhon,INST-201,Missing GUID Hospital,Error Ave,Bugsville,BUG-01,No,GUID,No GUID,Tester,noguid@test.ew,555-6666,NA,NA,NA,TRUE,TRUE,,,,,,,,,,, 
+FAIL-003,UnknownCountry,INST-202,Missing Country Clinic,Problem Rd,Faultburg,FAULT-01,No,Country,No Country,Tester,nocountry@test.nl,555-7777,NA,NA,NA,TRUE,TRUE,,,,,,,,,,, 
+FAIL-004,Atlantis,INST-MISSING,Missing InstID Center,Glitch Blvd,Crashville,CRASH-01,No,InstID,No InstID,Tester,noinstid@test.at,555-8888,NA,NA,NA,TRUE,TRUE,,,,,,,,,,, 
+FAIL-005,Utopia,INST-204,Missing Name Center,Missing InstName,Mystery Ln,Unknownville,UNK-01,No,InstName,No InstName,noinstid@test.at,noinstname@test.ut,International,NA,NA,TRUE,TRUE,TRUE,,,,,,,,,,
+FAIL-006,Erewhon,INST-205,Valid Name Inc.,Valid Addr,Goodville,GOOD-01,UnknownFirst,NoFirstName,UnknownFirst NoFirstName,Tester,nofirst@test.ew,555-1010,NA,NA,NA,TRUE,TRUE,,,,,,,,,,, 
+FAIL-007,Atlantis,INST-206,Valid Name Co.,Valid Addr 2,Stableburg,STAB-01,NoLastName,UnknownLast,NoLastName UnknownLast,Tester,nolast@test.at,555-1212,NA,NA,NA,TRUE,TRUE,,,,,,,,,,, 
+FAIL-008,Utopia,INST-207,Valid Name Ltd.,Valid Addr 3,Solidville,SOL-01,NoFullName,LastName,NoFullName LastName,Tester,nofull@test.ut,555-1313,NA,NA,NA,TRUE,TRUE,,,,,,,,,,, 
+FAIL-009,Erewhon,INST-208,Bad Tier Hospital,Bad Data Dr,Corruptia,CORR-01,Bad,Tier,Bad Tier,Tester,badtier@test.ew,555-1414,NA,NA,NA,TRUE,TRUE,,,,,,,,,,, 
+FAIL-010,Atlantis,INST-209,Bad Consent Clinic,Invalid St,Maybetown,MAYBE-01,Bad,Consent,Bad Consent,Tester,badconsent@test.at,555-1515,NA,NA,NA,FALSE,TRUE,,,,,,,,,,, 
+FAIL-011,Utopia,INST-210,Null Consent Hospital,Empty Ave,Voidville,VOID-01,Null,Consent,Null Consent,Tester,nullconsent@test.ut,555-1616,NA,NA,NA,FALSE,TRUE,,,,,,,,,,, 
+FAIL-012,Erewhon,INST-211,Spacey Clinic,Spacer St,Paddington,PAD-01,Leading,Space,Leading Space,Tester,leadingspace@test.ew,555-1717,NA,NA,NA,TRUE,TRUE,,,,,,,,,,, 
+FAIL-013,Atlantis,INST-212,Trailing Space Hospital,Trail End,Endville,END-01,Trailing,Space,Trailing Space,Tester,trailingspace@test.at,555-1818,NA,NA,NA,TRUE,TRUE,,,,,,,,,,, 
+FAIL-014,Utopia,INST-213,Invalid Email Center,NoAtSign St,Brokenville,BRK-01,Invalid,Email,Invalid Email,Tester,invalid-email@fix.ut,555-1919,NA,NA,NA,TRUE,TRUE,,,,,,,,Dr.,FALSE,Active,Cardiology 
