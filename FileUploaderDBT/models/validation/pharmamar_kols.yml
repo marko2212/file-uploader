@@ -1,0 +1,213 @@
+version: 2
+
+sources:
+  - name: uploaded_files # Or change to a more relevant source name, e.g., crm_data
+    schema: main # Adjust if your schema is different
+    tables:
+      - name: pharmamar_kols # Suggested table name, change if needed
+        description: "Table containing contact information and attributes of healthcare professionals."
+        tests:
+          - unique:
+              name: SourceAccountID - Unique
+              column_name: SourceAccountID
+          - dbt_utils.unique_combination_of_columns:
+              name: Customer Id & Persone Name - Unique combination
+              combination_of_columns:
+                - "Customer Id" # Quoted due to space
+                - "Persone Name" # Quoted due to space
+          
+          - dbt_utils.unique_combination_of_columns:
+              name: SourceAccountID_CentreCountry_CustomerID - Unique combination
+              combination_of_columns:
+                - SourceAccountID
+                - "Centre Country" # Quoted due to space
+                - "Customer Id"    # Quoted due to space
+        columns:
+          - name: SourceAccountID
+            data_type: string
+            description: "Unique identifier for the account from the source system."
+            tests:
+              - not_null:
+                  name: SourceAccountID - Not null
+              - unique:
+                  name: SourceAccountID - Unique check
+              - no_leading_or_trailing_spaces:
+                  name: SourceAccountID - Check for spaces
+
+          - name: "Centre Country" # Quoted due to space
+            data_type: string
+            description: "The country where the centre is located."
+            tests:
+              - not_null:
+                  name: Centre Country - Not null
+              - no_leading_or_trailing_spaces:
+                  name: Centre Country - Check for spaces
+
+          - name: "Customer Id" # Quoted due to space
+            data_type: string # Often treated as string even if numeric
+            description: "Unique identifier for the customer (centre)."
+            tests:
+              - not_null:
+                  name: Customer Id - Not null
+              - no_leading_or_trailing_spaces:
+                  name: Customer Id - Check for spaces
+
+          - name: "Centre Name" # Quoted due to space
+            data_type: string
+            description: "The name of the centre or institution."
+            tests:
+              - not_null:
+                  name: Centre Name - Not null
+
+          - name: "Centre Address" # Quoted due to space
+            data_type: string
+            description: "The address of the centre."
+
+          - name: "Centre City" # Quoted due to space
+            data_type: string
+            description: "The city where the centre is located."
+
+          - name: NUT3
+            data_type: string
+            description: "Nomenclature of Territorial Units for Statistics, level 3."
+
+          - name: Name
+            data_type: string
+            description: "First name of the contact person."
+            tests:
+              - not_null:
+                  name: Name - Not null
+
+          - name: Surname
+            data_type: string
+            description: "Last name of the contact person."
+            tests:
+              - not_null:
+                  name: Surname - Not null
+
+          - name: "Persone Name" # Original name with potential typo
+            data_type: string
+            description: "Full name of the contact person (likely concatenation of Name and Surname)."
+            tests:
+              - not_null:
+                  name: Persone Name - Not null # Verify if this is always populated
+
+          - name: Department
+            data_type: string
+            description: "The department where the person works."
+
+          - name: Email
+            data_type: string
+            description: "Email address of the contact person."
+            tests:
+              # You could add an email format test if needed, e.g., using dbt_utils.expression_is_true
+              # - dbt_utils.expression_is_true:
+              #     name: Email format check
+              #     expression: "LIKE '%@%.%'" # Basic check
+              #     config:
+              #       where: "Email is not null AND Email != ''"
+              - no_leading_or_trailing_spaces:
+                 name: Email - Check for spaces
+
+          - name: Phone
+            data_type: string # String due to potential formats (+, ., E notation)
+            description: "Phone number of the contact person."
+
+          - name: "KOL - SCLC" # Quoted due to space and hyphen
+            data_type: string
+            description: "Key Opinion Leader status for SCLC (Small Cell Lung Cancer)."
+            tests:
+              - accepted_values:
+                  name: KOL - SCLC - Accepted values
+                  values: ['Internacional', 'Nacional', 'Regional', 'Unclassified', 'NA', ''] # Add all valid values, including empty string if allowed
+                  config:
+                      quote: false # Since values don't have special characters
+
+          - name: "KOL - STS" # Quoted due to space and hyphen
+            data_type: string
+            description: "Key Opinion Leader status for STS (Soft Tissue Sarcoma)."
+            tests:
+              - accepted_values:
+                  name: KOL - STS - Accepted values
+                  values: ['Internacional', 'Nacional', 'Regional', 'Unclassified', 'NA', ''] # Add all valid values
+                  config:
+                      quote: false
+
+          - name: "KOL - Other" # Quoted due to space and hyphen
+            data_type: string
+            description: "Key Opinion Leader status for other areas."
+            tests:
+              - accepted_values:
+                  name: KOL - Other - Accepted values
+                  values: ['Internacional', 'Nacional', 'Regional', 'Unclassified', 'NA', ''] # Add all valid values
+                  config:
+                      quote: false
+
+          - name: "Contact Permission" # Quoted due to space
+            data_type: string # Or boolean if stored as such
+            description: "Permission to contact the person."
+            tests:
+              - not_null:
+                  name: Contact Permission - Not null
+              - accepted_values:
+                  name: Contact Permission - Accepted values
+                  values: ['TRUE', 'FALSE'] # Assuming string representation
+                  config:
+                      quote: false # Since values don't have special characters
+
+          - name: "Events Permission" # Quoted due to space
+            data_type: string # Or boolean
+            description: "Permission to invite the person to events."
+            tests:
+              - not_null:
+                  name: Events Permission - Not null
+              - accepted_values:
+                  name: Events Permission - Accepted values
+                  values: ['TRUE', 'FALSE']
+                  config:
+                      quote: false
+
+          - name: "Lurbinectedin compassionate use" # Quoted due to space
+            data_type: string
+            description: "Information about Lurbinectedin compassionate use program involvement."
+
+          - name: "Lurbinectedin clinical trials as PI" # Quoted due to space
+            data_type: string
+            description: "Indicates if the person is a Principal Investigator (PI) in Lurbinectedin clinical trials."
+
+          - name: "Lurbinectedin IIS as PI" # Quoted due to space
+            data_type: string
+            description: "Indicates if the person is a Principal Investigator (PI) in Lurbinectedin Investigator-Initiated Studies (IIS)."
+
+          - name: "Author clinical guidelines Lung cancer" # Quoted due to space
+            data_type: string
+            description: "Indicates if the person is an author of clinical guidelines for Lung Cancer."
+
+          - name: "Author clinical guidelines STS" # Quoted due to space
+            data_type: string
+            description: "Indicates if the person is an author of clinical guidelines for STS."
+
+          - name: "Market Access Influence Lung cancer" # Quoted due to space
+            data_type: string
+            description: "The person's level of influence on market access for Lung Cancer treatments."
+
+          - name: "Market Access Influence STS" # Quoted due to space
+            data_type: string
+            description: "The person's level of influence on market access for STS treatments."
+
+          - name: Title
+            data_type: string
+            description: "The person's title (e.g., Dr., Prof.)."
+
+          - name: Adjunto # Verify meaning and data type
+            data_type: string # Or boolean
+            description: "Additional status or role (e.g., 'Adjunct Professor'). Verify exact meaning."
+
+          - name: Status
+            data_type: string
+            description: "Status of the contact or person (e.g., Active, Inactive)."
+            # Add accepted_values test if there's a defined set of statuses
+
+          - name: Specialty
+            data_type: string
+            description: "The healthcare professional's specialty."
