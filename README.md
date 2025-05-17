@@ -64,8 +64,8 @@ FileUploader is a web-based application designed for uploading, displaying, vali
 
     ```bash
     # Activate the environment
-    .venv\Scripts\Activate # Windows: 
-    source .venv/bin/activate # macOS/Linux: 
+    .venv\Scripts\Activate # Windows
+    source .venv/bin/activate # macOS/Linux
     ```
 
 4. **Install Python Dependencies:**
